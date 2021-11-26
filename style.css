@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Estonia&family=Quicksand:wght@400;500&family=Varela+Round&display=swap');
+
+/* CSS Variables */
+
+:root {
+    --height_of_navbar: 10vh;
+    --height_of_bottom_tray: 12vh;
+    --height_of_middle_container: 78vh;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,10 +18,128 @@ body {
     background-color: rgb(245, 241, 236);
 }
 
-ul li {
-    list-style-type: none;
-}
+/************ Header section starts here *********/
 
+header {
+    position: sticky;
+    top: 0;
+    height: var(--height_of_navbar);
+}
 nav ul {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    background-color: aliceblue;
 }
+
+ul li {
+    list-style-type: none;
+    padding: 5px 10px;
+}
+
+li a {
+    text-decoration: none;
+    position: relative;
+    text-decoration: none;
+    padding: 4px 0;
+    transition: all 0.3s;
+}
+
+/* li a:hover {
+    background-color: yellow;
+    color: #95a5a6;
+}  */
+
+li a::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 2px;
+    top: 95%;
+    left: 0;
+    background: red;
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.brand-logo img {
+    width: 2rem;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 3.5px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/************ Header section ends here *********/
+
+/************ Song Display section starts here *********/
+
+.songDisplaySection {
+    height: var(--height_of_middle_container);
+}
+
+/************ Song Display section ends here *********/
+
+/************ Song Progress Bar section starts here *********/
+
+/* Icons */
+
+.material-icons {
+    cursor: pointer;
+}
+
+.bottom-tray-container {
+    position: sticky;
+    bottom: 0;
+    height: var(--height_of_bottom_tray);
+    background-color: brown;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.currSongDetails {
+    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.progressBar-and-Icons {
+    width: 60vw;
+}
+
+.volume-and-otherTools {
+    width: 20vw;
+}
+
+#songProgressBar {
+    cursor:grab;
+    width: 60%;
+}
+
+.slider {
+    opacity: 0.75;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.slider:hover {
+    opacity: 0.9;
+}
+
+/************ Song Progress Bar section ends here *********/
