@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Spotify </title>
     <link rel="shortcut icon" href="Icons/favicon1.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,15 +14,85 @@
     <header>
         <nav>
             <ul>
-                <li class="logo-brand">
+                <li class="brand-logo">
                     <img src="Icons/favicon1.png" alt="logo">
+                    Spotify
                 </li>
-                <li> HOME </li>
-                <li> About </li>
+                <li> <a href="#"> Home </a> </li>
+                <li> <a href="#"> About </a> </li>
             </ul>
         </nav>
     </header>
 
+    <main>
+
+        <div class="container">
+
+            <section class="songDisplaySection">
+
+            </section>
+
+            <section class="bottom-tray-container">
+
+                <div class="currSongDetails">
+                    <div>
+                        <div id="currSongName">
+                            Beautiful Mistakes
+                        </div>
+
+                        <div id="SongSinger">
+                            Megan Thee Stalion
+                        </div>
+                    </div>
+                    
+
+                    <div class="mark-fvr8">
+                        <i class="material-icons" id="mark-fvr8"> favorite_border </i>
+                    </div>
+                </div>
+
+                <div class="progressBar-and-Icons">
+                    <div class="progressBarRow">
+                        <span class="songLength"> X:XX </span>
+                        <input type="range" name="progressBar" id="songProgressBar" class="slider" min="0" max="100">
+                        <span class="songLength"> X:XX </span>
+                    </div>
+
+                    <div class="icon-class">
+                        <i class="material-icons"> loop </i>
+                        <i class="material-icons" id="back30secs"> replay_30 </i>
+                        <i class="material-icons"> skip_previous </i>
+                        <i class="material-icons" id="pause-play-btn"> play_arrow </i>
+                        <i class="material-icons"> skip_next </i>
+                        <i class="material-icons" id="forward30secs"> forward_30 </i>
+                        <i class="material-icons"> shuffle </i>
+                    </div>
+                </div>
+
+                <div class="volume-and-otherTools">
+                    <div>
+                        <i class="material-icons" id="volume-icon"> volume_up </i>
+                    
+                        <input type="range" name="volumeBar" id="volumeBar" class="slider" min="0" max="100">
+
+                        <span id="volume-num">
+                            50
+                        </span>
+                    </div>
+                </div>
+                
+            </section>
+
+        </div>
+        
+    </main>
+    
+    <!-- <footer>
+        <p>&copy; Copyright 2021</p>
+		<p>Built with ❤️ by Ayush Singh</p>
+    </footer> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
