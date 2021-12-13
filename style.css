@@ -24,13 +24,18 @@ header {
     position: sticky;
     top: 0;
     height: var(--height_of_navbar);
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    background-color: aliceblue;
 }
+
 nav ul {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
 }
 
 ul li {
@@ -83,13 +88,103 @@ li a:hover::after {
 
 /************ Header section ends here *********/
 
-/************ Song Display section starts here *********/
+/************ Song List Display section starts here *********/
 
-.songDisplaySection {
+
+
+.songListDisplaySection {
     height: var(--height_of_middle_container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/************ Song Display section ends here *********/
+.inner-container {
+    width: 70%;
+    height: 92%;
+    background-color: brown;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 1px black;
+}
+
+.topRow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: blanchedalmond;
+    position: static;
+    top:0;
+    height: 10%;
+}
+
+.songsDisplayArea {
+    background-color: blue;
+    display: flex;
+    height: 90%;
+}
+
+.songTileContainer {
+    width: 60%;
+    background-color: black;
+    overflow: auto;
+}
+
+.songCoverContainer {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.coverImage {
+    height: 55%;
+}
+
+.top-covergif {
+    height: 27%;
+    /* JS me daalenge bool playing=True;
+    jb true hoga bs tabhi dikhega ye otherwise visibility:hidden */
+}
+
+.bottom-covergif {
+    height: 18%;
+    /* JS me daalenge bool playing=True;
+    jb true hoga bs tabhi dikhega ye otherwise visibility:hidden */
+}
+
+.top-covergif img,
+.bottom-covergif img {
+    height: 100%;
+}
+
+#playingSongCover {
+    height: 80%;
+    border: 1px solid white
+}
+
+.songTiles {
+    background-color: skyblue;
+    height: 50px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px auto;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.songTiles img {
+    height: 75%;
+    margin: 0 0 0 5px;
+}
+
+
+
+/************ Song List Display section ends here *********/
 
 /************ Song Progress Bar section starts here *********/
 
@@ -143,3 +238,17 @@ li a:hover::after {
 }
 
 /************ Song Progress Bar section ends here *********/
+
+/************ Footer section starts here *********/
+
+/* footer {
+    position: sticky;
+    bottom: 0;
+    height: 10vh;
+    background: black;
+    color: orange;
+    text-align: center;
+    padding: 5px 0 2px;
+} */
+
+/************ Footer section ends here *********/
