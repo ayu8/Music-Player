@@ -1,12 +1,13 @@
 // --------- For Progress Bar ( Mouse Hold Event ) ------------
 
-$("#songProgressBar").mouseup(function() {
-    $("#songProgressBar").css("cursor", "grab");
-});
+// $("#songProgressBar").mouseup(function() {
+//     $("#songProgressBar").css("cursor", "grab");
+// });
 
-$("#songProgressBar").mousedown(function() {
-    $("#songProgressBar").css("cursor", "grabbing");
-});
+// $("#songProgressBar").mousedown(function() {
+//     $("#songProgressBar").css("cursor", "grabbing");
+// });
+
 
 // --------- For Volume Bar ------------
 
@@ -46,14 +47,7 @@ $("#mark-fvr8").click(function() {
 
 // --------- Button Functionalities ------------
 
-$("#pause-play-btn").click(function() {
-    if($("#pause-play-btn").html() == "play_arrow") {
-        $("#pause-play-btn").html("pause");
-    }
-    else {
-        $("#pause-play-btn").html("play_arrow");
-    }
-});
+
 
 $("#forward30secs").click(function() {
     var currPositionOfSong = parseInt($("#songProgressBar").val());
@@ -174,3 +168,64 @@ let songs = [
         cover: "Songcover/tu hi yaar mera.jpg"
     }
 ]
+
+// ----------------------------------
+// main work starts from here
+// ----------------------------------
+
+// variables
+
+let currSongIndex = 0;
+let audioElement = new Audio("Songs/Shreya Ghoshal - Achyutam Keshavam.mp3");
+let masterPlay = $("#pause-play-btn");
+let myProgressBar = $("#songProgressBar");
+
+// event listeners
+
+// handle play-pause
+
+masterPlay.click(function() {
+    if (audioElement.paused || audioElement.currentTime<=0) {
+        audioElement.play();
+        $("#pause-play-btn").html("pause");
+        $("#topGif").css("opacity", 1);
+        $("#bottomGif").css("opacity", 1);
+    } 
+    else {
+        audioElement.pause();
+        $("#pause-play-btn").html("play_arrow");
+        $("#topGif").css("opacity", 0);
+        $("#bottomGif").css("opacity", 0);
+    }
+});
+
+function str_pad_left(string,pad,length) {
+    return (new Array(length+1).join(pad)+string).slice(-length);
+}
+
+// timeupdate
+audioElement.ontimeupdate = function() {
+
+    let currSongTimeMins = Math.floor(Math.round(audioElement.currentTime)/60);
+    let currSongTimeSecs = Math.round(audioElement.currentTime)%60;
+    let currSongDurMins = Math.floor(Math.round(audioElement.duration)/60);
+    let currSongDurSecs = Math.round(audioElement.duration)%60;
+
+    $("#currSongTime").html(str_pad_left(currSongTimeMins,'0',2) + ':' + str_pad_left(currSongTimeSecs,'0',2));
+    $("#currSongDuration").html(str_pad_left(currSongDurMins,'0',2) + ':' + str_pad_left(currSongDurSecs,'0',2));
+
+    let currProgressBar = parseInt((Math.round(audioElement.currentTime)/Math.round(audioElement.duration)) * 100);
+    myProgressBar.val(currProgressBar);
+};
+
+myProgressBar.on('input', function() {
+    audioElement.currentTime = $("#songProgressBar").val() * audioElement.duration / 100;
+});
+
+// setting songs
+songItems = Array.from(document.getElementsByClassName("songTiles"));       // making it array so that it can be traversed
+
+songItems.forEach((element, i)=>{
+    element.getElementsByTagName("img")[0].src = songs[i].cover;
+    element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
+});
