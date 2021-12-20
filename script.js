@@ -1,39 +1,3 @@
-// --------- For Progress Bar ( Mouse Hold Event ) ------------
-
-// $("#songProgressBar").mouseup(function() {
-//     $("#songProgressBar").css("cursor", "grab");
-// });
-
-// $("#songProgressBar").mousedown(function() {
-//     $("#songProgressBar").css("cursor", "grabbing");
-// });
-
-
-// --------- For Volume Bar ------------
-
-$("#volumeBar").on('input', function() {
-    
-    var currVolume = $("#volumeBar").val();
-    console.log(currVolume);
-
-    $("#volume-num").html(currVolume);
-
-    var volIcon = $("#volume-icon");
-
-    if (currVolume==0) {
-        volIcon.html("volume_off");
-    }
-    else if (currVolume<33) {
-        volIcon.html("volume_mute");
-    }
-    else if (currVolume<67) {
-        volIcon.html("volume_down");
-    }
-    else {
-        volIcon.html("volume_up");
-    }
-});
-
 // --------- For Fvr8 songs ------------
 
 $("#mark-fvr8").click(function() {
@@ -176,7 +140,7 @@ let songs = [
 // variables
 
 let currSongIndex = 0;
-let audioElement = new Audio("Songs/Shreya Ghoshal - Achyutam Keshavam.mp3");
+let audioElement = new Audio("Songs/Ed Sheeran - Beautiful People feat Khalid.mp3");
 let masterPlay = $("#pause-play-btn");
 let myProgressBar = $("#songProgressBar");
 
@@ -228,4 +192,50 @@ songItems = Array.from(document.getElementsByClassName("songTiles"));       // m
 songItems.forEach((element, i)=>{
     element.getElementsByTagName("img")[0].src = songs[i].cover;
     element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
+    element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+});
+
+Array.from($(".songTiles")).forEach((element)=>{
+    element.addEventListener('click', (e)=>{
+        Array.from($(".song-play-buttons")).forEach((ele)=>{
+            ele.innerText = "play_circle_outline";
+        })
+        e.target.innerText = "pause_circle_outline";
+
+        currSongIndex = parseInt(element.children[2].innerText);
+        audioElement.src = songs[currSongIndex-1].path;
+        audioElement.play();
+        $("#pause-play-btn").html("pause");
+        $("#topGif").css("opacity", 1);
+        $("#bottomGif").css("opacity", 1);
+
+        $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
+    })
+})
+
+// --------- For Volume Bar ------------
+
+$("#volumeBar").on('input', function() {
+    
+    var currVolume = $("#volumeBar").val();
+    // console.log(currVolume);
+
+    audioElement.volume = currVolume/100;
+
+    $("#volume-num").html(currVolume);
+
+    var volIcon = $("#volume-icon");
+
+    if (currVolume==0) {
+        volIcon.html("volume_off");
+    }
+    else if (currVolume<33) {
+        volIcon.html("volume_mute");
+    }
+    else if (currVolume<67) {
+        volIcon.html("volume_down");
+    }
+    else {
+        volIcon.html("volume_up");
+    }
 });
