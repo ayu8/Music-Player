@@ -202,6 +202,7 @@ li a:hover::after {
 
 .material-icons {
     cursor: pointer;
+    /* padding: 0 3px; */
 }
 
 .bottom-tray-container {
@@ -213,6 +214,8 @@ li a:hover::after {
     display: flex;
     align-items: center;
     flex-direction: row;
+    font-family: 'Varela Round',
+    sans-serif;
 }
 
 .currSongDetails {
@@ -229,6 +232,13 @@ li a:hover::after {
 
 .volume-and-otherTools {
     width: 20vw;
+}
+
+.volume-and-otherTools div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5px;
 }
 
 #songProgressBar {
@@ -251,7 +261,7 @@ li a:hover::after {
 
 /************ Footer section starts here *********/
 
-/* footer {
+footer {
     position: sticky;
     bottom: 0;
     height: 10vh;
@@ -259,6 +269,6 @@ li a:hover::after {
     color: orange;
     text-align: center;
     padding: 5px 0 2px;
-} */
+}
 
 /************ Footer section ends here *********/
