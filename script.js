@@ -9,33 +9,11 @@ $("#mark-fvr8").click(function() {
     }
 });
 
-// --------- Button Functionalities ------------
+// let songPlaying = false;
 
-
-
-$("#forward30secs").click(function() {
-    var currPositionOfSong = parseInt($("#songProgressBar").val());
-    if (currPositionOfSong <= 70) {
-        currPositionOfSong += 30;
-    }
-    else {
-        currPositionOfSong = 100;
-    }
-    $("#songProgressBar").val(currPositionOfSong);
-    console.log(currPositionOfSong);
-});
-
-$("#back30secs").click(function() {
-    var currPositionOfSong = parseInt($("#songProgressBar").val());
-    if (currPositionOfSong >= 30) {
-        currPositionOfSong -= 30;
-    }
-    else {
-        currPositionOfSong = 0;
-    }
-    $("#songProgressBar").val(currPositionOfSong);
-    console.log(currPositionOfSong);
-});
+// if (songPlaying==false) {
+//     $("#master-mark-fvr8").css("display", "none");
+// }
 
 // ----------- Songs ---------
 
@@ -139,10 +117,12 @@ let songs = [
 
 // variables
 
-let currSongIndex = 0;
-let audioElement = new Audio("Songs/Ed Sheeran - Beautiful People feat Khalid.mp3");
+let currSongIndex = 1;
+let audioElement = new Audio("Songs/Agar Tum Saath Ho.mp3");
 let masterPlay = $("#pause-play-btn");
 let myProgressBar = $("#songProgressBar");
+let shuffleState = false;
+let loopState = false;
 
 // event listeners
 
@@ -154,14 +134,20 @@ masterPlay.click(function() {
         $("#pause-play-btn").html("pause");
         $("#topGif").css("opacity", 1);
         $("#bottomGif").css("opacity", 1);
+        $("#playingSongCover").css("box-shadow", "0 0 20px yellow");
     } 
     else {
         audioElement.pause();
         $("#pause-play-btn").html("play_arrow");
         $("#topGif").css("opacity", 0);
         $("#bottomGif").css("opacity", 0);
+        $("#playingSongCover").css("box-shadow", "0 0 0");
+        Array.from($(".song-play-buttons")).forEach((ele)=>{
+            ele.innerText = "play_circle_outline";
+        })
     }
 });
+
 
 function str_pad_left(string,pad,length) {
     return (new Array(length+1).join(pad)+string).slice(-length);
@@ -180,11 +166,22 @@ audioElement.ontimeupdate = function() {
 
     let currProgressBar = parseInt((Math.round(audioElement.currentTime)/Math.round(audioElement.duration)) * 100);
     myProgressBar.val(currProgressBar);
+
+    if (currProgressBar==100) {
+        $("#pause-play-btn").html("play_arrow");
+        $("#topGif").css("opacity", 0);
+        $("#bottomGif").css("opacity", 0);
+        $("#playingSongCover").css("box-shadow", "0 0 0");
+        Array.from($(".song-play-buttons")).forEach((ele)=>{
+            ele.innerText = "play_circle_outline";
+        })
+    }
 };
 
 myProgressBar.on('input', function() {
     audioElement.currentTime = $("#songProgressBar").val() * audioElement.duration / 100;
 });
+
 
 // setting songs
 songItems = Array.from(document.getElementsByClassName("songTiles"));       // making it array so that it can be traversed
@@ -195,33 +192,96 @@ songItems.forEach((element, i)=>{
     element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
 });
 
-Array.from($(".songTiles")).forEach((element)=>{
+
+Array.from($(".song-play-buttons")).forEach((element)=>{
     element.addEventListener('click', (e)=>{
         Array.from($(".song-play-buttons")).forEach((ele)=>{
             ele.innerText = "play_circle_outline";
         })
-        e.target.innerText = "pause_circle_outline";
+        e.target.innerText = "pause_circle_outline";        
 
-        currSongIndex = parseInt(element.children[2].innerText);
+        currSongIndex = parseInt(element.parentNode.parentNode.children[2].innerText);
         audioElement.src = songs[currSongIndex-1].path;
         audioElement.play();
         $("#pause-play-btn").html("pause");
         $("#topGif").css("opacity", 1);
         $("#bottomGif").css("opacity", 1);
+        $("#playingSongCover").css("box-shadow", "0 0 20px yellow");
 
         $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
+        $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
+        $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
     })
-})
+});
+
+Array.from($(".mark-fvr8-buttons")).forEach((element)=>{
+    element.addEventListener('click', (e)=>{
+        if (e.target.innerText == "favorite") {
+            e.target.innerText = "favorite_border";
+        } else {
+            e.target.innerText = "favorite";
+        }
+    })
+});
+
+$("#next").click(function() {
+
+    if (shuffleState) {
+        var a = Math.floor((Math.random() * 13) + 1);
+        while (a==currSongIndex) {
+            a = Math.floor((Math.random() * 13) + 1);
+        }
+        currSongIndex = a;
+    }
+    else {
+        if (currSongIndex>12) {
+            currSongIndex = 1;
+        }
+        else {
+            currSongIndex += 1;
+        }
+    }
+
+    audioElement.src = songs[currSongIndex-1].path;
+    audioElement.play();
+    $("#pause-play-btn").html("pause");
+    $("#topGif").css("opacity", 1);
+    $("#bottomGif").css("opacity", 1);
+    $("#playingSongCover").css("box-shadow", "0 0 20px yellow");
+
+    $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
+    $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
+    $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
+    
+});
+
+$("#prevs").click(function() {
+    if (currSongIndex<2) {
+        currSongIndex = 13;
+    }
+    else {
+        currSongIndex -= 1;
+    }
+    audioElement.src = songs[currSongIndex-1].path;
+    audioElement.play();
+    $("#pause-play-btn").html("pause");
+    $("#topGif").css("opacity", 1);
+    $("#bottomGif").css("opacity", 1);
+    $("#playingSongCover").css("box-shadow", "0 0 20px yellow");
+
+    $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
+    $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
+    $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
+
+});
 
 // --------- For Volume Bar ------------
 
 $("#volumeBar").on('input', function() {
     
     var currVolume = $("#volumeBar").val();
-    // console.log(currVolume);
 
     audioElement.volume = currVolume/100;
-
     $("#volume-num").html(currVolume);
 
     var volIcon = $("#volume-icon");
@@ -237,5 +297,49 @@ $("#volumeBar").on('input', function() {
     }
     else {
         volIcon.html("volume_up");
+    }
+});
+
+// --------- Button Functionalities ------------
+
+$("#forward30secs").click(function() {
+    
+    if (audioElement.currentTime+30<audioElement.duration) {
+        audioElement.currentTime += 30;
+    }
+    else {
+        audioElement.currentTime = audioElement.duration;
+    }
+});
+
+$("#back30secs").click(function() {
+    if (audioElement.currentTime<30) {
+        audioElement.currentTime = 0;
+    }
+    else {
+        audioElement.currentTime -= 30;
+    }
+});
+
+$("#shuffle").click(function() {
+    if (shuffleState==true) {
+        shuffleState = false;
+        $("#shuffle").html("shuffle");
+    }
+    else {
+        shuffleState = true;
+        $("#shuffle").html("shuffle_on");
+    }
+});
+
+
+$("#loop").click(function() {
+    if (loopState==true) {
+        loopState = false;
+        $("#loop").html("repeat");
+    }
+    else {
+        loopState = true;
+        $("#loop").html("repeat_on");
     }
 });
