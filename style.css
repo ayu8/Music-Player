@@ -100,28 +100,19 @@ li a:hover::after {
 }
 
 .inner-container {
-    width: 70%;
-    height: 95%;
+    width: 100%;
+    height: 100%;
     background-color: brown;
     margin: auto;
     border-radius: 5px;
     box-shadow: 1px 1px 4px 1px black;
 }
 
-.topRow {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: blanchedalmond;
-    position: static;
-    top:0;
-    height: 10%;
-}
-
 .songsDisplayArea {
     background-color: blue;
     display: flex;
-    height: 90%;
+    height: 100%;
+    border: 5px ridge black;
 }
 
 .songTileContainer {
@@ -139,20 +130,20 @@ li a:hover::after {
     background-color: black;
 }
 
+.fvr8-songs-container {
+    display: none;
+}
+
 .coverImage {
     height: 55%;
 }
 
 .top-covergif {
     height: 27%;
-    /* JS me daalenge bool playing=True;
-    jb true hoga bs tabhi dikhega ye otherwise visibility:hidden */
 }
 
 .bottom-covergif {
     height: 18%;
-    /* JS me daalenge bool playing=True;
-    jb true hoga bs tabhi dikhega ye otherwise visibility:hidden */
 }
 
 .cover-gifs img {
@@ -187,6 +178,14 @@ li a:hover::after {
     margin: 0 0 0 3px;
     border-radius: 15%;
     border: 1px solid black;
+}
+
+.songTiles .songName {
+    width: 40%;
+}
+
+.songTiles div {
+    width: 20%;
 }
 
 .songId {
