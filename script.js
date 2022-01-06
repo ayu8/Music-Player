@@ -1,19 +1,14 @@
 // --------- For Fvr8 songs ------------
 
-$("#mark-fvr8").click(function() {
-    if($("#mark-fvr8").html() == "favorite") {
-        $("#mark-fvr8").html("favorite_border");
-    }
-    else {
-        $("#mark-fvr8").html("favorite");
-    }
-});
+// $("#mark-fvr8").click(function() {
+//     if($("#mark-fvr8").html() == "favorite") {
+//         $("#mark-fvr8").html("favorite_border");
+//     }
+//     else {
+//         $("#mark-fvr8").html("favorite");
+//     }
+// });
 
-// let songPlaying = false;
-
-// if (songPlaying==false) {
-//     $("#master-mark-fvr8").css("display", "none");
-// }
 
 // ----------- Songs ---------
 
@@ -123,6 +118,7 @@ let masterPlay = $("#pause-play-btn");
 let myProgressBar = $("#songProgressBar");
 let shuffleState = false;
 let loopState = false;
+let totalfvr8songs = 0;
 
 // event listeners
 
@@ -135,6 +131,7 @@ masterPlay.click(function() {
         $("#topGif").css("opacity", 1);
         $("#bottomGif").css("opacity", 1);
         $("#playingSongCover").css("box-shadow", "0 0 20px yellow");
+        Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
     } 
     else {
         audioElement.pause();
@@ -145,6 +142,7 @@ masterPlay.click(function() {
         Array.from($(".song-play-buttons")).forEach((ele)=>{
             ele.innerText = "play_circle_outline";
         })
+        
     }
 });
 
@@ -190,27 +188,45 @@ songItems.forEach((element, i)=>{
     element.getElementsByTagName("img")[0].src = songs[i].cover;
     element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
     element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+    element.getElementsByClassName("songLength")[0].innerText = "00:00";
 });
 
 
 Array.from($(".song-play-buttons")).forEach((element)=>{
     element.addEventListener('click', (e)=>{
-        Array.from($(".song-play-buttons")).forEach((ele)=>{
-            ele.innerText = "play_circle_outline";
-        })
-        e.target.innerText = "pause_circle_outline";        
+        
+        if (e.target.innerText == "play_circle_outline") {
 
-        currSongIndex = parseInt(element.parentNode.parentNode.children[2].innerText);
-        audioElement.src = songs[currSongIndex-1].path;
-        audioElement.play();
-        $("#pause-play-btn").html("pause");
-        $("#topGif").css("opacity", 1);
-        $("#bottomGif").css("opacity", 1);
-        $("#playingSongCover").css("box-shadow", "0 0 20px yellow");
+            Array.from($(".song-play-buttons")).forEach((ele)=>{
+                ele.innerText = "play_circle_outline";
+            })
 
-        $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
-        $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
-        $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
+            e.target.innerText = "pause_circle_outline";        
+
+            currSongIndex = parseInt(element.parentNode.parentNode.children[3].innerText);
+            audioElement.src = songs[currSongIndex-1].path;
+            audioElement.play();
+            $("#pause-play-btn").html("pause");
+            $("#topGif").css("opacity", 1);
+            $("#bottomGif").css("opacity", 1);
+            $("#playingSongCover").css("box-shadow", "0 0 20px yellow");
+
+            $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
+            $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
+            $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
+        }
+        else {
+            e.target.innerText == "play_circle_outline";
+
+            audioElement.pause();
+            $("#pause-play-btn").html("play_arrow");
+            $("#topGif").css("opacity", 0);
+            $("#bottomGif").css("opacity", 0);
+            $("#playingSongCover").css("box-shadow", "0 0 0");
+            Array.from($(".song-play-buttons")).forEach((ele)=>{
+                ele.innerText = "play_circle_outline";
+            })
+        }
     })
 });
 
@@ -218,8 +234,13 @@ Array.from($(".mark-fvr8-buttons")).forEach((element)=>{
     element.addEventListener('click', (e)=>{
         if (e.target.innerText == "favorite") {
             e.target.innerText = "favorite_border";
+            totalfvr8songs -= 1;
+            console.log(totalfvr8songs);
         } else {
             e.target.innerText = "favorite";
+            totalfvr8songs += 1;
+            console.log(totalfvr8songs);
+            // parseInt(e.target.parentNode.parentNode.children[2].innerText);
         }
     })
 });
@@ -252,7 +273,12 @@ $("#next").click(function() {
     $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
     $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
     $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
+
+    Array.from($(".song-play-buttons")).forEach((ele)=>{
+        ele.innerText = "play_circle_outline";
+    })
     
+    Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
 });
 
 $("#prevs").click(function() {
@@ -273,6 +299,10 @@ $("#prevs").click(function() {
     $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
     $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
 
+    Array.from($(".song-play-buttons")).forEach((ele)=>{
+        ele.innerText = "play_circle_outline";
+    })
+    Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
 });
 
 // --------- For Volume Bar ------------
@@ -343,3 +373,6 @@ $("#loop").click(function() {
         $("#loop").html("repeat_on");
     }
 });
+
+let liked_songs = [];
+
