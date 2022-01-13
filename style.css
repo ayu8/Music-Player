@@ -27,7 +27,8 @@ header {
     margin-bottom: 0;
     display: flex;
     align-items: center;
-    background-color: aliceblue;
+    background-color: #141414;
+    color: aliceblue;
 }
 
 nav ul {
@@ -35,7 +36,7 @@ nav ul {
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    /* background-color: aliceblue; */
+    color: aliceblue;
 }
 
 ul li {
@@ -49,6 +50,7 @@ li a {
     text-decoration: none;
     padding: 4px 0;
     transition: all 0.3s;
+    color: #EDEDED;
 }
 
 /* li a:hover {
@@ -102,14 +104,14 @@ li a:hover::after {
 .inner-container {
     width: 100%;
     height: 100%;
-    background-color: brown;
+    /* background-color: #0F172A; */
     margin: auto;
     border-radius: 5px;
     box-shadow: 1px 1px 4px 1px black;
 }
 
 .songsDisplayArea {
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     height: 100%;
     border: 5px ridge black;
@@ -117,7 +119,7 @@ li a:hover::after {
 
 .songTileContainer {
     width: 60%;
-    background-color: black;
+    background-color: #0F172A;
     overflow: auto;
 }
 
@@ -127,7 +129,7 @@ li a:hover::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background-color: #0F172A;
 }
 
 .fvr8-songs-container {
@@ -158,11 +160,12 @@ li a:hover::after {
     height: 80%;
     /* border: 1px solid white; */
     border-radius: 50%;
-    box-shadow: 0 0 20px yellow;
+    box-shadow: 0px 0px 20px 5px black;
 }
 
 .songTiles {
-    background-color: skyblue;
+    background-color: #0F172A;
+    color: #D3D3D3;
     height: 60px;
     width: 90%;
     display: flex;
@@ -171,6 +174,11 @@ li a:hover::after {
     margin: 15px auto;
     padding: 0 12px;
     border-radius: 20px;
+}
+
+.songTiles:hover {
+    background-color: #1E293B;
+    opacity: 0.9;
 }
 
 .songTiles img {
@@ -188,10 +196,9 @@ li a:hover::after {
     width: 20%;
 }
 
-.songId {
-    display: none;
+.songTiles .songId {
+    width: 2%;
 }
-
 
 /************ Song List Display section ends here *********/
 
@@ -208,7 +215,8 @@ li a:hover::after {
     position: sticky;
     bottom: 0;
     height: var(--height_of_bottom_tray);
-    background-color: brown;
+    background-color: #141814;
+    color: #EDEDED;
     text-align: center;
     display: flex;
     align-items: center;
@@ -264,8 +272,8 @@ footer {
     position: sticky;
     bottom: 0;
     height: 10vh;
-    background: black;
-    color: orange;
+    background: #181818;
+    color: #EDEDED;
     text-align: center;
     padding: 5px 0 2px;
 }
