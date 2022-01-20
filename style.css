@@ -177,8 +177,9 @@ li a:hover::after {
 }
 
 .songTiles:hover {
-    background-color: #1E293B;
-    opacity: 0.9;
+    background-color: #1b2b46;
+    opacity: 0.95;
+    color: white;
 }
 
 .songTiles img {
@@ -194,10 +195,25 @@ li a:hover::after {
 
 .songTiles div {
     width: 20%;
+    text-align: right;
+    padding-right: 10px;
 }
 
 .songTiles .songId {
-    width: 2%;
+    width: 3%;
+    text-align: center;
+}
+
+.songTiles .mark-fvr8-buttons {
+    padding-left: 10px;
+}
+
+#currSongBar {
+    outline: none;
+    border: none;
+    opacity: 0.85;
+    width: 75%;
+    
 }
 
 /************ Song List Display section ends here *********/
@@ -279,3 +295,30 @@ footer {
 }
 
 /************ Footer section ends here *********/
+
+
+/************ Media Queries **********/
+
+@media only screen and (max-width: 900px) {
+    .songTiles {
+        width: 98%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .songTiles .mark-fvr8-buttons {
+        padding-left: 0px;
+    }
+    
+}
+
+@media only screen and (max-width: 575px) {
+    .songTileContainer {
+        width: 100%;
+    }
+
+    .songCoverContainer {
+        width: 0%;
+        display: none;
+    }
+}
