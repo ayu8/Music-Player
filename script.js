@@ -121,7 +121,6 @@ let masterPlay = $("#pause-play-btn");
 let myProgressBar = $("#songProgressBar");
 let shuffleState = false;
 let loopState = false;
-// let totalfvr8songs = 0;
 
 
 $(document).ready(function() {
@@ -137,6 +136,9 @@ $(document).ready(function() {
             $("#bottomGif").css("opacity", 1);
             $("#playingSongCover").css("box-shadow", "0 0 20px 5px black");
             Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
+
+            Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.children[0].innerHTML = "<img src='GIFs/playingbars1.gif'  id='currSongBar' alt=''></img>";
+            Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.style.color = "yellow";
         } 
         else {
             audioElement.pause();
@@ -147,6 +149,11 @@ $(document).ready(function() {
             Array.from($(".song-play-buttons")).forEach((ele)=>{
                 ele.innerText = "play_circle_outline";
             })
+
+            songItems.forEach((element, i)=>{
+                element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+                $(element).css("color", "white");
+            });
             
         }
     });
@@ -178,6 +185,11 @@ $(document).ready(function() {
             Array.from($(".song-play-buttons")).forEach((ele)=>{
                 ele.innerText = "play_circle_outline";
             })
+
+            songItems.forEach((element, i)=>{
+                element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+                $(element).css("color", "white");
+            });
         }
     };
 
@@ -209,8 +221,12 @@ $(document).ready(function() {
                 e.target.innerText = "pause_circle_outline";        
 
                 currSongIndex = parseInt(element.parentNode.parentNode.children[0].innerText);
-                // element.parentNode.parentNode.children[0].innerHTML = "<img src='GIFs/playingbars1.gif' width='150%' id='' alt=''></img>";
-                // console.log(element.parentNode.parentNode.children[0].innerHTML);
+                songItems.forEach((element, i)=>{
+                    element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+                    $(element).css("color", "white");
+                });
+                element.parentNode.parentNode.children[0].innerHTML = "<img src='GIFs/playingbars1.gif' id='currSongBar' alt=''></img>";
+                $(element).parent().parent().css("color", "yellow");
                 audioElement.src = songs[currSongIndex-1].path;
                 audioElement.play();
 
@@ -234,6 +250,10 @@ $(document).ready(function() {
                 Array.from($(".song-play-buttons")).forEach((ele)=>{
                     ele.innerText = "play_circle_outline";
                 })
+
+                songItems.forEach((element, i)=>{
+                    element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+                });
             }
             
         })
@@ -243,13 +263,8 @@ $(document).ready(function() {
         element.addEventListener('click', (e)=>{
             if (e.target.innerText == "favorite") {
                 e.target.innerText = "favorite_border";
-                totalfvr8songs -= 1;
-                console.log(totalfvr8songs);
             } else {
                 e.target.innerText = "favorite";
-                totalfvr8songs += 1;
-                console.log(totalfvr8songs);
-                // parseInt(e.target.parentNode.parentNode.children[2].innerText);
             }
         })
     });
@@ -288,6 +303,13 @@ $(document).ready(function() {
         })
         
         Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
+
+        songItems.forEach((element, i)=>{
+            element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+            $(element).css("color", "white");
+        });
+        Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.children[0].innerHTML = "<img src='GIFs/playingbars1.gif' id='currSongBar' alt=''></img>";
+        Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.style.color = "yellow";
     });
 
     $("#prevs").click(function() {
@@ -312,6 +334,12 @@ $(document).ready(function() {
             ele.innerText = "play_circle_outline";
         })
         Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
+        songItems.forEach((element, i)=>{
+            element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+            $(element).css("color", "white");
+        });
+        Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.children[0].innerHTML = "<img src='GIFs/playingbars1.gif' id='currSongBar' alt=''></img>";
+        Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.style.color = "yellow";
     });
 
     // --------- For Volume Bar ------------
