@@ -191,6 +191,9 @@ $(document).ready(function() {
                 $(element).css("color", "white");
             });
         }
+
+        $("#songProgressBar").css("background-size", myProgressBar.val() + '% 100%');
+
     };
 
     myProgressBar.on('input', function() {
@@ -365,6 +368,16 @@ $(document).ready(function() {
         else {
             volIcon.html("volume_up");
         }
+
+        $("#volumeBar").css("background-size", currVolume + '% 100%');
+    });
+
+    $("#volumeBar").mouseup(function() {
+        $("#volume-num").css("visibility", "hidden");
+    });
+
+    $("#volumeBar").mousedown(function() {
+        $("#volume-num").css("visibility", "visible");
     });
 
     // --------- Button Functionalities ------------
@@ -412,3 +425,17 @@ $(document).ready(function() {
     });
 
 })
+
+
+// testing loader
+// var myVar;
+
+// function loader() {
+//     myVar = setTimeout(showPage, 3000);
+// }
+
+// function showPage() {
+//     $("header").show();
+//     $("main").show();
+//     $("#loader").hide(500);
+// }
