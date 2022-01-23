@@ -387,6 +387,25 @@ footer {
         width: 100vw;
     }
 
+    #songProgressBar {
+        width: 80%;
+    }
+
+    .icon-class .material-icons {
+        margin: 1px 0 2px;
+        font-size: 150%;
+        vertical-align: middle;
+    }
+
+    #pause-play-btn {
+        font-size: 250%;
+    }
+
+    #prevs,
+    #next {
+        font-size: 200%;
+    }
+
     .songCoverContainer {
         width: 0%;
         display: none;
