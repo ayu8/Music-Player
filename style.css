@@ -365,6 +365,24 @@ footer {
         width: 100%;
     }
 
+    .songLength {
+        display: none;
+    }
+
+    .songTiles .mark-fvr8-buttons {
+        padding-left: 0;
+    }
+
+    .songTiles div {
+        text-align: center;
+        width: 25%;
+        padding-right: 5px;
+    }
+
+    .songTiles div .song-play-buttons {
+        padding-right: 10px;
+    }
+
     .progressBar-and-Icons {
         width: 100vw;
     }
