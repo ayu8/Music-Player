@@ -219,11 +219,11 @@ li a:hover::after {
 
 .material-icons {
     cursor: pointer;
-    /* padding: 0 3px; */
 }
 
-.bottom-tray-container .material-icons {
+.icon-class .material-icons {
     padding: 0 0.8%;
+    margin: 1px 0 3px;
     font-size: 120%;
     vertical-align: middle;
 }
@@ -269,14 +269,14 @@ li a:hover::after {
 #currSongName {
     font-family: 'Varela Round', sans-serif;
     font-size: 80%;
-    letter-spacing: 1px;
+    letter-spacing: 0.85px;
 }
 
 #currSongArtist {
     font-family: 'Dancing Script',
         cursive;
     font-size: 77.5%;
-    letter-spacing: 1px;
+    letter-spacing: 0.75px;
 }
 
 #currSongTime, 
@@ -294,6 +294,10 @@ li a:hover::after {
     align-items: center;
     justify-content: center;
     padding: 0 5%;
+}
+
+.volume-and-otherTools .material-icons {
+    font-size: 120%;
 }
 
 #volumeBar {
