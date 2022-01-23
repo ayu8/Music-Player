@@ -222,6 +222,20 @@ li a:hover::after {
     /* padding: 0 3px; */
 }
 
+.bottom-tray-container .material-icons {
+    padding: 0 0.8%;
+    font-size: 120%;
+    vertical-align: middle;
+}
+
+#pause-play-btn {
+    font-size: 200%;
+}
+
+#prevs, #next {
+    font-size: 150%;
+}
+
 .bottom-tray-container {
     position: sticky;
     bottom: 0;
@@ -530,7 +544,7 @@ input[type=range]:focus::-ms-fill-upper {
     height: 5px;
     border-radius: 5px;
     background: grey;
-    background-image: linear-gradient(rgba(255, 255, 200, 0.75), rgba(255, 255, 200, 0.75));
+    background-image: linear-gradient(rgba(255, 255, 155, 0.75), rgba(255, 255, 155, 0.75));
     background-size: 0% 100%;
     background-repeat: no-repeat;
     outline: none;
@@ -546,7 +560,7 @@ input[type=range]:focus::-ms-fill-upper {
     height: 4px;
     border-radius: 5px;
     background: grey;
-    background-image: linear-gradient(rgba(250, 250, 200, 0.75), rgba(250, 250, 200, 0.75));
+    background-image: linear-gradient(rgba(250, 250, 150, 0.75), rgba(250, 250, 150, 0.75));
     background-size: 100% 100%;
     background-repeat: no-repeat;
     outline: none;
@@ -560,7 +574,7 @@ input[type=range]:focus::-ms-fill-upper {
 #songProgressBar:hover,
 #volumeBar:hover {
     opacity: 1;
-    background-image: linear-gradient(yellow, orange);
+    background-image: linear-gradient(rgb(255, 255, 50), rgb(255, 165, 25));
 }
 
 #songProgressBar::-webkit-slider-thumb,
