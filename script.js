@@ -13,7 +13,7 @@ let songs = [
         songId: '2',
         songName: "Let Me Down Slowly",
         artist: "Alec Benjamin",
-        path: "Songs/Alec Benjamin - Let Me Down Slowly.mp3",
+        path: "Songs/Let Me Down Slowly - Alec Benjamin.mp3",
         cover: "Songcover/Let me down slowly.jpg",
         songLength: "02:57"
     },
@@ -164,7 +164,9 @@ $(document).ready(function() {
     }
 
     // timeupdate
-    audioElement.ontimeupdate = function() {
+    audioElement.ontimeupdate = ontimeupdatefn;
+    
+    function ontimeupdatefn() {
 
         let currSongTimeMins = Math.floor(Math.round(audioElement.currentTime)/60);
         let currSongTimeSecs = Math.round(audioElement.currentTime)%60;
@@ -178,18 +180,55 @@ $(document).ready(function() {
         myProgressBar.val(currProgressBar);
 
         if (currProgressBar==100) {
-            $("#pause-play-btn").html("play_circle_filled");
-            $("#topGif").css("opacity", 0);
-            $("#bottomGif").css("opacity", 0);
-            $("#playingSongCover").css("box-shadow", "0 0 0 0");
-            Array.from($(".song-play-buttons")).forEach((ele)=>{
-                ele.innerText = "play_circle_outline";
-            })
 
-            songItems.forEach((element, i)=>{
-                element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
-                $(element).css("color", "white");
-            });
+            if (loopState) {
+                if (shuffleState) {
+                    var a = Math.floor((Math.random() * songs.length) + 1);
+                    while (a==currSongIndex) {
+                        a = Math.floor((Math.random() * songs.length) + 1);
+                    }
+                    currSongIndex = a;
+                } else {
+                    if (currSongIndex > (songs.length - 1)) {
+                        currSongIndex = 1;
+                    }
+                    else {
+                        currSongIndex += 1;
+                    }
+                }
+
+                audioElement = new Audio(songs[currSongIndex-1].path);
+                audioElement.play();
+
+                Array.from($(".song-play-buttons")).forEach((ele)=>{
+                    ele.innerText = "play_circle_outline";
+                })
+
+                songItems.forEach((element, i)=>{
+                    element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+                    $(element).css("color", "white");
+                });
+
+                Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.children[0].innerHTML = "<img src='GIFs/playingbars1.gif'  id='currSongBar' alt=''></img>";
+                Array.from($(".song-play-buttons"))[currSongIndex-1].parentNode.parentNode.style.color = "yellow";
+                Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
+
+                audioElement.ontimeupdate = ontimeupdatefn;
+            }
+            else {
+                $("#pause-play-btn").html("play_circle_filled");
+                $("#topGif").css("opacity", 0);
+                $("#bottomGif").css("opacity", 0);
+                $("#playingSongCover").css("box-shadow", "0 0 0 0");
+                Array.from($(".song-play-buttons")).forEach((ele)=>{
+                    ele.innerText = "play_circle_outline";
+                })
+
+                songItems.forEach((element, i)=>{
+                    element.getElementsByClassName("songId")[0].innerText = songs[i].songId;
+                    $(element).css("color", "white");
+                });
+            }
         }
 
         $("#songProgressBar").css("background-size", myProgressBar.val() + '% 100%');
