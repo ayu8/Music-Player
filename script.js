@@ -1051,19 +1051,4 @@ $(document).ready(function() {
             $("#loop").html("repeat_on");
         }
     });
-
 })
-
-
-// testing loader
-// var myVar;
-
-// function loader() {
-//     myVar = setTimeout(showPage, 3000);
-// }
-
-// function showPage() {
-//     $("header").show();
-//     $("main").show();
-//     $("#loader").hide(500);
-// }
