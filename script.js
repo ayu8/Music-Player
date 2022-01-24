@@ -719,6 +719,7 @@ $(document).ready(function() {
             $("#topGif").css("opacity", 1);
             $("#bottomGif").css("opacity", 1);
             $("#playingSongCover").css("box-shadow", "0 0 20px 5px black");
+            $("#playingSongCover").show();
             $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
             Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
 
@@ -794,6 +795,8 @@ $(document).ready(function() {
                     $(element).css("color", "white");
                 });
 
+                $("#playingSongCover").show();
+
                 $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
                 $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
                 $("#currSongArtist")[0].innerText = songs[currSongIndex-1].artist;
@@ -868,6 +871,7 @@ $(document).ready(function() {
                 $("#topGif").css("opacity", 1);
                 $("#bottomGif").css("opacity", 1);
                 $("#playingSongCover").css("box-shadow", "0 0 20px 5px black");
+                $("#playingSongCover").show();
 
                 $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
                 $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
@@ -927,6 +931,7 @@ $(document).ready(function() {
         $("#topGif").css("opacity", 1);
         $("#bottomGif").css("opacity", 1);
         $("#playingSongCover").css("box-shadow", "0 0 20px 5px black");
+        $("#playingSongCover").show();
 
         $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
         $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
@@ -959,6 +964,7 @@ $(document).ready(function() {
         $("#topGif").css("opacity", 1);
         $("#bottomGif").css("opacity", 1);
         $("#playingSongCover").css("box-shadow", "0 0 20px 5px black");
+        $("#playingSongCover").show();
 
         $("#playingSongCover")[0].src = songs[currSongIndex-1].cover;
         $("#currSongName")[0].innerText = songs[currSongIndex-1].songName;
@@ -1013,7 +1019,7 @@ $(document).ready(function() {
 
     // --------- Button Functionalities ------------
 
-   $("#forward10secs").click(function() {
+    $("#forward10secs").click(function() {
         
         if (audioElement.currentTime+10<audioElement.duration) {
             audioElement.currentTime += 10;
@@ -1064,4 +1070,7 @@ $(document).ready(function() {
         }
     });
 
+    $("#download-icon").mouseover(function() {
+        $("#download-link").attr('href', songs[currSongIndex-1].path);
+    });
 })
