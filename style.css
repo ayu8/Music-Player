@@ -505,7 +505,7 @@ h2 {
     }
 
     #songProgressBar {
-        width: 70%;
+        width: 80%;
     }
 
     .icon-class .material-icons {
@@ -588,14 +588,14 @@ h2 {
 }
 
 
-input[type=range]:hover {
+#songProgressBar:hover,
+#volumeBar:hover {
     opacity: 1;
     background-image: linear-gradient(rgb(255, 255, 50), rgb(255, 165, 25));
 }
 
-input[type=range]::-webkit-slider-thumb,
-input[type=range]::-ms-thumb,
-input[type=range]::-moz-range-thumb {
+#songProgressBar::-webkit-slider-thumb,
+#volumeBar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
@@ -606,9 +606,8 @@ input[type=range]::-moz-range-thumb {
     margin-top: -3.5px;
 }
 
-input[type=range]::-webkit-slider-runnable-track,
-input[type=range]::-moz-range-track,
-input[type=range]::-ms-track {
+#songProgressBar::-webkit-slider-runnable-track,
+#volumeBar::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     appearance: none;
     height: 5px;
