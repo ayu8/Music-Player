@@ -1013,22 +1013,22 @@ $(document).ready(function() {
 
     // --------- Button Functionalities ------------
 
-    $("#forward30secs").click(function() {
+   $("#forward10secs").click(function() {
         
-        if (audioElement.currentTime+30<audioElement.duration) {
-            audioElement.currentTime += 30;
+        if (audioElement.currentTime+10<audioElement.duration) {
+            audioElement.currentTime += 10;
         }
         else {
             audioElement.currentTime = audioElement.duration;
         }
     });
 
-    $("#back30secs").click(function() {
-        if (audioElement.currentTime<30) {
+    $("#back10secs").click(function() {
+        if (audioElement.currentTime<10) {
             audioElement.currentTime = 0;
         }
         else {
-            audioElement.currentTime -= 30;
+            audioElement.currentTime -= 10;
         }
     });
 
