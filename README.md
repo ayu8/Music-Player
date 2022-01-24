@@ -1,1 +1,1 @@
-Deployed [here](https://ayu8.github.io/Music-Player)
+Deployed [here](https://my-spotify-ayu8.netlify.app)
