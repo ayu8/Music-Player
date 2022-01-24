@@ -704,7 +704,7 @@ let audioElement = new Audio(songs[currSongIndex-1].path);
 let masterPlay = $("#pause-play-btn");
 let myProgressBar = $("#songProgressBar");
 let shuffleState = false;
-let loopState = false;
+let loopState = 0;
 
 
 $(document).ready(function() {
@@ -766,7 +766,7 @@ $(document).ready(function() {
 
         if (currProgressBar==100) {
 
-            if (loopState) {
+            if (loopState==1) {
                 if (shuffleState) {
                     var a = Math.floor((Math.random() * songs.length) + 1);
                     while (a==currSongIndex) {
@@ -803,6 +803,9 @@ $(document).ready(function() {
                 Array.from($(".song-play-buttons"))[currSongIndex-1].innerText = "pause_circle_outline";
 
                 audioElement.ontimeupdate = ontimeupdatefn;
+            }
+            else if (loopState==2) {
+                audioElement.play();
             }
             else {
                 $("#pause-play-btn").html("play_circle_filled");
@@ -1041,14 +1044,24 @@ $(document).ready(function() {
     });
 
 
+    // loopState 2 --> repeat 1
+    // loopState 1 --> repeal all
+    // loopState 0 --> no repeat
     $("#loop").click(function() {
-        if (loopState==true) {
-            loopState = false;
+        if (loopState==2) {
+            loopState = 0;
             $("#loop").html("repeat");
+            console.log("No repeat");
+        }
+        else if (loopState==1) {
+            loopState = 2;
+            $("#loop").html("repeat_one");
+            console.log("Repeat 1")
         }
         else {
-            loopState = true;
+            loopState = 1;
             $("#loop").html("repeat_on");
         }
     });
+
 })
