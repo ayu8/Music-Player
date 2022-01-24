@@ -50,12 +50,14 @@ li a {
     text-decoration: none;
     position: relative;
     text-decoration: none;
-    padding: 4px 0;
+    padding: 4px 5px;
     transition: all 0.3s;
     color: #EDEDED;
-    font-family: 'Lora', sans-serif;
-    font-style: italic;
-    font-size: 0.9rem;
+    font-family: 'Estonia',
+    cursive;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    font-weight: 600;
 }
 
 li a::after {
@@ -78,6 +80,7 @@ li a:hover::after {
 
 .brand-logo img {
     width: 2rem;
+
 }
 
 .brand-logo {
@@ -88,6 +91,7 @@ li a:hover::after {
     font-size: 1.1rem;
     font-family: 'Ubuntu',
     sans-serif;
+    margin-left: 3px;
 }
 
 /************ Header section ends here *********/
@@ -136,6 +140,10 @@ li a:hover::after {
 
 .coverImage {
     height: 55%;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .top-covergif {
@@ -155,9 +163,40 @@ li a:hover::after {
 #playingSongCover {
     position: relative;
     top: 5%;
-    height: 80%;
+    height: 35vh;
+    width: 35vh;
     border-radius: 50%;
     box-shadow: 0px 0px 20px 5px black;
+    display: block;
+    display: none;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 5%;
+    height: 35vh;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    width: 35vh;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.image-overlay:hover {
+    opacity: 1;
+}
+
+#download-icon {
+    position: relative;
+    top: 14vh;
+    left: 14vh;
+}
+
+#download-link {
+    text-decoration: none;
+    font-size: 7vh;
+    color: rgba(255, 251, 1, 0.9);
+    text-shadow: 0px 0px 10px black;
 }
 
 .songTiles {
@@ -274,14 +313,16 @@ li a:hover::after {
 
 #currSongName {
     font-family: 'Varela Round', sans-serif;
-    font-size: 80%;
+    font-size: 82.5%;
     letter-spacing: 0.85px;
+    padding-bottom: 2px;
 }
 
 #currSongArtist {
     font-family: 'Dancing Script', cursive;
-    font-size: 77.5%;
+    font-size: 80%;
     letter-spacing: 0.75px;
+    padding-top: 2px;
 }
 
 #currSongTime, 
@@ -441,6 +482,10 @@ h2 {
         display: none;
     }
     
+    #currSongArtist {
+        display: none;
+    }
+
     .progressBar-and-Icons {
         width: 75vw;
     }
@@ -474,6 +519,15 @@ h2 {
 }
 
 @media only screen and (max-width: 575px) {
+
+    .bottom-tray-container {
+        height: 15vh;
+    }
+
+    .songListDisplaySection {
+        height: 75vh;
+    }
+
     .songTileContainer {
         width: 100%;
     }
@@ -505,22 +559,26 @@ h2 {
     }
 
     #songProgressBar {
-        width: 80%;
+        width: 72.5%;
     }
 
     .icon-class .material-icons {
         margin: 1px 0 2px;
-        font-size: 150%;
+        font-size: 175%;
         vertical-align: middle;
     }
 
     #pause-play-btn {
-        font-size: 250%;
+        font-size: 275%;
     }
 
     #prevs,
     #next {
-        font-size: 200%;
+        font-size: 225%;
+    }
+
+    #back10secs, #forward10secs {
+        display: none;
     }
 
     .songCoverContainer {
