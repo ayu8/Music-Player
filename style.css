@@ -180,6 +180,7 @@ li a:hover::after {
     width: 35vh;
     opacity: 0;
     transition: opacity .3s ease;
+    display: none;
 }
 
 .image-overlay:hover {
@@ -271,10 +272,22 @@ li a:hover::after {
     margin: 1px 0 3px;
     font-size: 120%;
     vertical-align: middle;
+    opacity: 0.7;
+    transition: opacity 0.25s;
 }
 
 #pause-play-btn {
     font-size: 200%;
+    opacity: 1;
+    transition: all 0.2s;
+}
+
+#pause-play-btn:hover {
+    transform: scale(1.04);
+}
+
+.icon-class .material-icons:hover {
+    opacity: 1;
 }
 
 #prevs, #next {
