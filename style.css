@@ -16,10 +16,6 @@
     outline: none;
 }
 
-body {
-    background-color: rgb(245, 241, 236);
-}
-
 /************ Header section starts here *********/
 
 header {
@@ -53,9 +49,9 @@ li a {
     padding: 4px 5px;
     transition: all 0.3s;
     color: #EDEDED;
-    font-family: 'Estonia',
-    cursive;
-    font-size: 1.25rem;
+    font-family: 'Ubuntu',
+    sans-serif;
+    font-size: 0.75rem;
     letter-spacing: 2px;
     font-weight: 600;
 }
@@ -80,7 +76,6 @@ li a:hover::after {
 
 .brand-logo img {
     width: 2rem;
-
 }
 
 .brand-logo {
@@ -95,6 +90,7 @@ li a:hover::after {
 }
 
 /************ Header section ends here *********/
+
 
 /************ Song List Display section starts here *********/
 
@@ -259,6 +255,8 @@ li a:hover::after {
 
 /************ Song List Display section ends here *********/
 
+
+
 /************ Song Progress Bar section starts here *********/
 
 /* Icons */
@@ -375,19 +373,25 @@ li a:hover::after {
 
 /************ Song Progress Bar section ends here *********/
 
+
+
 /************ Footer section starts here *********/
 
 footer {
     position: sticky;
     bottom: 0;
-    height: 10vh;
+    height: var(--height_of_bottom_tray);
     background: #181818;
     color: #EDEDED;
-    text-align: center;
-    padding: 5px 0 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(#0F172A, #181818);
 }
 
 /************ Footer section ends here *********/
+
 
 /************** Page 2  ************/
 
@@ -688,6 +692,8 @@ h2 {
     border: 0px;
 }
 
+/***************** Designing Pseudo Scrollbar  **************/
+
 ::-webkit-scrollbar {
     width: 8px;
     outline: none;
@@ -708,4 +714,21 @@ h2 {
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
+}
+
+.video-container {
+    height: var(--height_of_middle_container);
+    text-align: center;
+    color: wheat;
+    background: #0F172A;
+    /* height: 100%; */
+    width: 80%;
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    border-radius: 5%;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5), 0 0 10px 2px black;
+    width: 70%;
+    height: 31.5vw;
 }
