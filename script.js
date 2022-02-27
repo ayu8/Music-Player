@@ -691,7 +691,10 @@ let songs = [
     }
 ]
 
-
+for(var i=0; i<songs.length; i++) {
+    // console.log(songs[i]);
+    $(".songTileContainer").html($(".songTileContainer").html() + "<div class='songTiles'>    <span class='songId'> 1 </span>   <img src='Songcover/Beautiful people.jpg' alt=''>   <span class='songName'> Beautiful People 1</span>     <span class='songLength'>05:34</span>     <div>  <i class='material-icons song-play-buttons'> play_circle_outline </i>    <i class='material-icons mark-fvr8-buttons'> favorite_border </i>   </div>   </div>")
+}
 
 // ----------------------------------
 // main work starts from here
