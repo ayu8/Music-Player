@@ -1,1 +1,1 @@
-Deployed [here](https://my-spotify-ayu8.netlify.app)
+Deployed [here](https://spotify-ayu8.netlify.app)
